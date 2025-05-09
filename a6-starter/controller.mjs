@@ -54,6 +54,7 @@ function isValid(req) {
 /**
  *
  */
+//Create using POST /orders
 app.post("/orders", (req, res) => {
   if (!isValid(req)) {
     res.status(400).json(ERROR_INVALID_REQ);
@@ -63,4 +64,23 @@ app.post("/orders", (req, res) => {
   }
 });
 
-//TODO: Add code for other routes in the REST API
+//Read all using GET /orders (query parameter)
+app.get("/orders/", (req, res) => {
+  console.log(`query: ${req.query.company}`);
+
+  let r_array = model.readOrders(req.query.company);
+  res.status(200).json(r_array);
+});
+
+//Read one using GET /orders/:id (path parameter)
+app.get("/orders/:id", (req, res) => {
+  console.log(`params: ${req.params.id}`);
+
+  let r_array = model.readOrder(req.params.id);
+
+  if (r_array) {
+    res.status(200).json(r_array);
+  } else {
+    res.status(404).json(ERROR_NOT_FOUND);
+  }
+});
