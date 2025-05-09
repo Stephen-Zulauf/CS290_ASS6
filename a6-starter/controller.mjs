@@ -108,3 +108,16 @@ app.put("/orders/:id", (req, res) => {
     }
   }
 });
+
+//Delete using DELETE /orders/:id
+app.delete("/orders/:id", (req, res) => {
+  console.log(`params: ${req.params.id}`);
+
+  let deleted = model.deleteOrder(req.params.id);
+
+  if (deleted) {
+    res.status(204);
+  } else {
+    res.status(404).json(ERROR_NOT_FOUND);
+  }
+});

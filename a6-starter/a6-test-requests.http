@@ -1,5 +1,5 @@
 @INVALID_ORDER_ID = 3eb2af5bbaa58dd422e84d8
-@ORCL_ORDER_ID = fa7e5cc74920b33c7e430204
+@ORCL_ORDER_ID = 42271fcbfaeb21ba63dd68f1
 
 ### NOTE: Replace the value of the variable ORCL_ORDER_ID with the value
 ###     of "id" in the response of the following request, i.e., Request 1.

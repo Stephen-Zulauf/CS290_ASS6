@@ -15,12 +15,6 @@ function createOrder(company, quantity) {
 
 // Don't change anything above this line
 
-// TODO: Add code for other functions and export the functions so that the
-// controller can call them
-//read
-//update
-//delete
-
 //returns all orders or just company orders in an array
 function readOrders(company) {
   let r_array = [];
@@ -77,4 +71,19 @@ function updateOrder(id, body) {
   return null;
 }
 
-export { createOrder, readOrders, readOrder, updateOrder };
+//deletes a single order by id
+function deleteOrder(id, body) {
+  if (id) {
+    for (let i = 0; i < database.length; i++) {
+      if (database[i].id === id) {
+        //remove order from database
+        database.splice(database[i], 1);
+
+        return true;
+      }
+    }
+  }
+  return null;
+}
+
+export { createOrder, readOrders, readOrder, updateOrder, deleteOrder };
