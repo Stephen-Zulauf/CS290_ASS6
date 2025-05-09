@@ -56,4 +56,25 @@ function readOrder(id) {
   return null;
 }
 
-export { createOrder, readOrders, readOrder };
+function updateOrder(id, body) {
+  let r_array = [];
+
+  if (id) {
+    for (let i = 0; i < database.length; i++) {
+      if (database[i].id === id) {
+        //function only changes quantity of order for now
+        database[i].quantity = body.quantity;
+
+        r_array.push(database[i].company);
+        r_array.push(database[i].quantity);
+        r_array.push(database[i].id);
+        r_array.push(database[i].date);
+
+        return r_array;
+      }
+    }
+  }
+  return null;
+}
+
+export { createOrder, readOrders, readOrder, updateOrder };

@@ -84,3 +84,27 @@ app.get("/orders/:id", (req, res) => {
     res.status(404).json(ERROR_NOT_FOUND);
   }
 });
+
+//Update using PUT /orders/:id (path parameter) (quantity)
+app.put("/orders/:id", (req, res) => {
+  console.log(`params: ${req.params.id}`);
+  console.log(`quantity: ${req.body.quantity}`);
+
+  if (
+    !(
+      req.body.quantity &&
+      Number.isInteger(req.body.quantity) &&
+      req.body.quantity > 1
+    )
+  ) {
+    res.status(400).json(ERROR_INVALID_REQ);
+  } else {
+    let r_array = model.updateOrder(req.params.id, req.body);
+
+    if (r_array) {
+      res.status(200).json(r_array);
+    } else {
+      res.status(404).json(ERROR_NOT_FOUND);
+    }
+  }
+});
