@@ -24,21 +24,27 @@ function isValid(req) {
   // @param {string} company // >= 2 chars length
   // @param {number} quantity // cannot be zero
   if (!req.body.company) {
+    console.log("no company");
     return false;
   }
   if (!req.body.quantity) {
+    console.log("no quantity");
     return false;
   }
-  if (!isString(req.body.company)) {
+  if (!(typeof req.body.company === "string")) {
+    console.log(`Company - ${req.body.company} - is not a string`);
     return false;
   }
   if (req.body.company.length < 2) {
+    console.log("Company is less than 2 chars");
     return false;
   }
   if (!Number.isInteger(req.body.quantity)) {
+    console.log("Quantity is not an integer");
     return false;
   }
   if (req.body.quantity <= 0) {
+    console.log(`Quantity - ${req.body.quantity} - is less than 1`);
     return false;
   }
   //end of validation
